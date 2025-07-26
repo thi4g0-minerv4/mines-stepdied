@@ -1,4 +1,0 @@
-- Colorama
-- Fontes
-- Converter para EXE
-- Lógica

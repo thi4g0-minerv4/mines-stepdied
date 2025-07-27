@@ -1,11 +1,11 @@
 from colorama import Fore
+from time import sleep
 from core.objects.Map import Map
 from core.assets.game_assets import game_assets
 
 class Game:
-    def __init__(self, difficulty: str = 'custom', auto_clear: bool = True, map: Map = None):
+    def __init__(self, difficulty: str = 'custom', map: Map = None):
         self.difficulty = difficulty
-        self.auto_clear = auto_clear
         if map:
             self.map = map
         else:
@@ -13,22 +13,24 @@ class Game:
         
     def generate_map(self):
         if self.difficulty.lower() == 'custom':
-            xlen = int(input("Type the lenght of X-Axis:    "))
-            ylen = int(input("Type the lenght of Y-Axis:    "))
+            xlen = int(input("Type the lenght of X-Axis (Max: 26):    "))
+            ylen = int(input("Type the lenght of Y-Axis (Max: 9):    "))
             bombs = int(input("Type the quantity of bombs:    "))
-            return Map(xlen, ylen, bombs)
+            auto_clear = bool(input("Type nothing for OFF Auto Clear or type something to ON Auto Clear:     "))
+
+            return Map(xlen, ylen, bombs, auto_clear)
         elif self.difficulty.lower() == 'insane':
-            return Map(26, 9, 200, False)
+            return Map(26, 9, 150, False)
         elif self.difficulty.lower() == 'hard':
             return Map(18, 9, 80, False)
         elif self.difficulty.lower() == 'medium':
-            return Map(9, 9, 30, self.auto_clear)
+            return Map(9, 9, 30, True)
         elif self.difficulty.lower() == 'easy':
-            return Map(6, 6, 10, self.auto_clear)
+            return Map(6, 6, 10, True)
         elif self.difficulty.lower() == 'baby':
             return Map(5, 5, 5, True)
         elif self.difficulty.lower() == 'russian_rolet':
-            return Map(3, 3, 8, self.auto_clear)
+            return Map(3, 3, 8, False)
         
             
     def start_game(self):
@@ -39,6 +41,7 @@ class Game:
             # Win Verification:
             if self.win_verification():
                 self.game_over('win')
+                return
 
             
             pre_input = input(f'\n{Fore.YELLOW} Type the Block that you wanna to active {Fore.RESET} {Fore.MAGENTA}(If you want to flag type FL before, the same to disflag. Ex: FL A1) {Fore.GREEN}(To finish the game type "stop"){Fore.RESET}:  ')
@@ -112,3 +115,6 @@ class Game:
             print("🏆🏆 -- YOU GOT OUT ALIVE MAN -- 🏆🏆\nNow it's just a matter of dealing with the traumas\n")
 
         print(f'Total of safe blocks revealed: {len(actived_secure_blocks)}/{total_secure_blocks}\nBombs correctly flagged:  {len(flagged_bomb_blocks)}/{self.map.bombs}\n')
+        sleep(1)
+        print('Turning Off...')
+        sleep(5)

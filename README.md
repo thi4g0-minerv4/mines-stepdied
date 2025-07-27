@@ -52,14 +52,14 @@ Com isso você "marca" aquele bloco como se ele fosse uma bomba, assim o jogo te
 <br>
 
 - <strong>4- Se ativar uma bomba... Game Over na hora</strong>
-<img src="imgs/example-6.png" width="600px"> 
+<img src="imgs/example-6.png" width="400px"> 
 Nesse jogo, cliquei no último bloco e era uma bomba, então o jogo se encerra automaticamente. Com isso ele mostra o mapa completo, com todos os blocos revelados e também a minha pontuação, no caso os blocos seguros que ativei e as bombas que dei Flag corretamente.
 
 ##
 <br>
 
 - <strong>5- Para encerrar o jogo, digite "stop". Isso também revelará o mapa e a sua pontuação</strong>
-<img src="imgs/example-7.png" width="400px">
+<img src="imgs/example-7.png" width="600px">
 Em resumo, essas são todas as ações que você pode realizar até a versão atual do jogo.
 
 ##
